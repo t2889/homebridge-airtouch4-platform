@@ -110,7 +110,7 @@ Airtouch.prototype.onACStatusNotification = function(ac_status) {
 			unit.api = this.api;
 			unit.context.manufacturer = this.config.units[unit_status.ac_unit_number].manufacturer || "N/A";
 			unit.context.model = this.config.units[unit_status.ac_unit_number].model || "N/A";
-			unit.context.serial = unit_status.ac_unit_number;
+			unit.context.serial = "unit-" + unit_status.ac_unit_number;
 			this.setupACAccessory(unit);
 			this.units[unit_name] = unit;
 			this.platform.registerPlatformAccessories("homebridge-airtouch4-platform", "Airtouch", [unit]);
@@ -134,7 +134,7 @@ Airtouch.prototype.onGroupsStatusNotification = function(groups_status) {
 			zone.api = this.api;
 			zone.context.manufacturer = "Polyaire";
 			zone.context.model = "Quick Fix Damper";
-			zone.context.serial = zone_status.group_number;
+			zone.context.serial = "zone-" + zone_status.group_number;
 			this.setupZoneAccessory(zone);
 			this.zones[zone_name] = zone;
 			this.platform.registerPlatformAccessories("homebridge-airtouch4-platform", "Airtouch", [zone]);
@@ -404,7 +404,7 @@ Airtouch.prototype.updateZoneAccessory = function(accessory, status) {
 			thermo.api = this.api;
 			thermo.context.manufacturer = "Polyaire";
 			thermo.context.model = "Temperature Control Thermostat";
-			thermo.context.serial = status.group_number;
+			thermo.context.serial = "thermo-" + status.group_number;
 			this.setupThermoAccessory(thermo);
 			this.thermostats[thermo_name] = thermo;
 			this.platform.registerPlatformAccessories("homebridge-airtouch4-platform", "Airtouch", [thermo]);
